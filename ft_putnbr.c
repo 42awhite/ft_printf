@@ -10,76 +10,91 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_putnbr(unsigned long nbr, char *str)
-{
-	long int	num;
-	static int	cont;
+#include <stdio.h>
+#include <unistd.h>
+#include "ft_printf.h"
 
-	number = (unsigned int)nbr;
+static void	ft_char(char c)
+{
+	write(1, &c, 1);
+}
+
+int	ft_putnbr(long int nbr)
+{
+	int	cont;
+
 	cont = 0;
-	if(number >= ft_strlen(nbr))
+	if (nbr < 0)
 	{
-		ft_putnbr(number / ft_strlen(str), str);
-		number = number % ft_strlen(str)
+		write (1, "-", 1);
+		nbr *= -1;
+		cont++;
 	}
+	if (nbr > 9)
+		cont += ft_putnbr(nbr / 10);
 	cont++;
-	ft_putchar(str[num]);
+	ft_char((nbr % 10) + '0');
 	return (cont);
 }
 
-int	ft_hexad(size_t nbr)
+int	put_nbr_base(unsigned long long nbr, char *base, int base_size)
 {
-	static int	cont;
-	char		*hex;
+	int	cont;
 
-	hex = "0123456789abcdef";
 	cont = 0;
-	if (nbr >= 16)
-	{
-		ft_hexad(nbr / 16);
-		nbr = nbr % 16;
-	}
+	if (nbr >= (unsigned long long) base_size)
+		cont = put_nbr_base(nbr / base_size, base, base_size);
+	ft_char(base[nbr % base_size]);
 	cont++;
-	ft_putchar(hex[nbr]);
 	return (cont);
 }
 
-int	ft_putnbr_fd(int n)
+int	put_hex(unsigned long long nbr, char type)
 {
-	char		number;
-	static int	cont;
+	int	cont;
 
 	cont = 0;
-	if (n == -2147483648)
+	if (type == 'x')
 	{
-		write(fd, "-2147483648", 11);
-		return ;
+		cont = put_nbr_base(nbr, "0123456789abcdef", 16);
+		return (cont);
 	}
-	if (n < 0)
+	else if (type == 'X')
 	{
-		write(fd, "-", 1);
-		n *= -1;
+		cont = put_nbr_base(nbr, "0123456789ABCDEF", 16);
+		return (cont);
 	}
-	if (n <= 9)
-	{
-		number = n + '0';
-		write(fd, &number, 1);
-	}
-	if (n >= 10)
-	{
-		ft_putnbr_fd(n / 10);
-		ft_putnbr_fd(n % 10);
-	}
-	cont++;
-	return (cont)
+	return (cont);
 }
 
-int	ft_pttohex(void *pun)
+int	put_pointer(unsigned long long pun)
 {
-	size_t	length;
-	size_t	n_pun;
+	int		cont;
+	size_t		nbr;
 
-	n_pun = (size_t)pun;
-	
-	
+	cont = 0;
+	nbr = (size_t)pun;
+	cont += write(1, "0x", 2);
+	cont += put_hex(nbr, 'x');
+	return (cont);
 }
+
+int	put_unsigned(unsigned int nbr)
+{
+	int	cont;
+
+	cont = 0;
+	cont = put_nbr_base(nbr, "0123456789", 10);
+	return (cont);
+}
+/*
+int	main(void)
+{
+	int value;
+	void *p;
+
+	value = put_unsigned(-1);
+	printf("\n%u\n", -1);
+	printf("\n%d\n", value);
+}
+*/

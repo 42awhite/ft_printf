@@ -20,20 +20,19 @@ int	ft_strlen(char *str)
 	return (c);
 }
 
-
-int ft_putchar(char c)
+int	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	write (1, &c, 1);
 	return (1);
 }
 
 int	ft_putstr(char *s)
 {
-	if(!s)
+	if (!s)
 	{
-		ft_putstr("(null)");
+		write (1, "(null)", 6);
 		return (6);
 	}
-	write(1, s, ft_strlen(s));
+	write (1, s, ft_strlen(s));
 	return (ft_strlen(s));
 }
