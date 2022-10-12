@@ -6,13 +6,15 @@
 /*   By: ablanco- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:44:48 by ablanco-          #+#    #+#             */
-/*   Updated: 2022/10/05 20:15:01 by ablanco-         ###   ########.fr       */
+/*   Updated: 2022/10/12 17:21:19 by ablanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
+
 int	ft_strlen(char *str)
 {
-	size_t	cont;
+	size_t	c;
 
 	c = 0;
 	while (str[c] != '\0')

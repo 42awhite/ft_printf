@@ -1,4 +1,4 @@
-NAME = libprintf.h
+NAME = libftprintf.a
 
 CC = gcc
 
