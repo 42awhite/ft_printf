@@ -6,7 +6,7 @@
 /*   By: ablanco- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:20:57 by ablanco-          #+#    #+#             */
-/*   Updated: 2022/10/12 17:21:16 by ablanco-         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:44:57 by ablanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	ft_toprint(va_list args, const char c)
 
 int	ft_printf(char const *str, ...)
 {
-	int	cont;
+	int		cont;
 	va_list	args;
-	int	lenght;
+	int		lenght;
 
 	cont = 0;
 	lenght = 0;

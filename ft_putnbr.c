@@ -6,18 +6,13 @@
 /*   By: ablanco- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:23:26 by ablanco-          #+#    #+#             */
-/*   Updated: 2022/10/12 17:19:10 by ablanco-         ###   ########.fr       */
+/*   Updated: 2022/10/13 21:02:16 by ablanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 #include "ft_printf.h"
-
-static void	ft_char(char c)
-{
-	write(1, &c, 1);
-}
 
 int	ft_putnbr(long int nbr)
 {
@@ -69,7 +64,7 @@ int	put_hex(unsigned long long nbr, char type)
 
 int	put_pointer(unsigned long long pun)
 {
-	int		cont;
+	int			cont;
 	size_t		nbr;
 
 	cont = 0;
